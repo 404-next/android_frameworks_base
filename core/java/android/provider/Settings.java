@@ -5153,6 +5153,12 @@ public final class Settings {
         public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
         /**
+        * whether to enable or disable vibration on succesful fingerprint auth
+        * @hide
+        */
+        public static final String AUTHENTICATION_SUCCESS_VIB = "authentication_success_vib";
+
+        /**
          * Whether or not to enable multiple audio focus.
          * When enabled, requires more management by user over application playback activity,
          * for instance pausing media apps when another starts.
@@ -5289,6 +5295,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE_VENDOR_HINT);
             PRIVATE_SETTINGS.add(CALL_CONNECTED_TONE_ENABLED);
+            PRIVATE_SETTINGS.add(AUTHENTICATION_SUCCESS_VIB);
         }
 
         /**

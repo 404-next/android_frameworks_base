@@ -23,12 +23,13 @@ import android.media.AudioAttributes;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.Process;
+import android.os.UserHandle;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.VibrationEffect;
+import android.provider.Settings;
 import android.os.Vibrator;
 import android.util.Slog;
-
 /**
  * Abstract {@link HalClientMonitor} subclass that operations eligible/interested in acquisition
  * messages should extend.
@@ -194,7 +195,9 @@ public abstract class AcquisitionClient<T> extends HalClientMonitor<T> implement
 
     protected final void vibrateSuccess() {
         Vibrator vibrator = getContext().getSystemService(Vibrator.class);
-        if (vibrator != null) {
+        final boolean authenticationVib = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.AUTHENTICATION_SUCCESS_VIB, 1, UserHandle.USER_CURRENT) == 1;
+        if (vibrator != null && authenticationVib) {
             vibrator.vibrate(Process.myUid(),
                     getContext().getOpPackageName(),
                     SUCCESS_VIBRATION_EFFECT,
