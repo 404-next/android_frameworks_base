@@ -25476,7 +25476,7 @@ public class PackageManagerService extends IPackageManager.Stub
         final StorageManager sm = mInjector.getSystemService(StorageManager.class);
         UserManagerInternal umInternal = mInjector.getUserManagerInternal();
         for (UserInfo user : mUserManager.getUsers(false /* includeDying */)) {
-            int flags;
+            final int flags;
             if (umInternal.isUserUnlockingOrUnlocked(user.id)) {
                 flags = StorageManager.FLAG_STORAGE_DE | StorageManager.FLAG_STORAGE_CE;
             } else if (umInternal.isUserRunning(user.id)) {
